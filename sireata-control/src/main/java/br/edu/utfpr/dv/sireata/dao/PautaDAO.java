@@ -8,8 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
 import br.edu.utfpr.dv.sireata.model.Pauta;
 
+@Service
 public class PautaDAO {
 	
 	public Pauta buscarPorId(int id) throws SQLException{
@@ -40,6 +45,7 @@ public class PautaDAO {
 		}
 	}
 	
+	@GetMapping("/pauta")
 	public List<Pauta> listarPorAta(int idAta) throws SQLException{
 		Connection conn = null;
 		Statement stmt = null;
@@ -68,6 +74,7 @@ public class PautaDAO {
 		}
 	}
 	
+	@PostMapping("/pauta/salvar")
 	public int salvar(Pauta pauta) throws SQLException{
 		boolean insert = (pauta.getIdPauta() == 0);
 		Connection conn = null;
